@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | AAK Auto Detailing</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        AAK: {
+                            black: '#0a0a0a',
+                            dark: '#121212',
+                            gray: '#1e1e1e',
+                            lightgray: '#2a2a2a',
+                            blue: '#0066ff',
+                            lightblue: '#3385ff',
+                            text: '#f3f4f6',
+                            muted: '#9ca3af'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'page-header': "linear-gradient(to right, rgba(10, 10, 10, 0.95), rgba(10, 10, 10, 0.7)), url('https://images.unsplash.com/photo-1600661653561-629509216228?q=80&w=1920&auto=format&fit=crop')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #1e1e1e; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0066ff; }
+
+        /* Navbar transitions */
+        .nav-scrolled {
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Card Hover Effects */
+        .service-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px -10px rgba(0, 102, 255, 0.15);
+        }
+        .service-card:hover .service-icon {
+            color: #0066ff;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+    <body class="font-sans antialiased selection:bg-AAK-blue selection:text-white">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 top-0 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="font-bold text-2xl tracking-tighter text-white flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-AAK-blue"></i>
+                        AAK<span class="text-AAK-muted font-light text-sm tracking-widest ml-1 mt-1 hidden sm:inline-block">DETAILING</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-sm font-semibold uppercase tracking-widest text-AAK-text hover:text-AAK-blue transition-colors">Home</a>
+                    <a href="services.html" class="text-sm font-semibold uppercase tracking-widest text-AAK-blue transition-colors">Services</a>
+                    <a href="about.html" class="text-sm font-semibold uppercase tracking-widest text-AAK-text hover:text-AAK-blue transition-colors">About</a>
+                    <a href="contact.html" class="text-sm font-semibold uppercase tracking-widest text-AAK-text hover:text-AAK-blue transition-colors">Contact</a>
+                    <a href="appointment.html" class="bg-AAK-blue text-white px-6 py-2.5 rounded text-sm uppercase tracking-widest font-bold hover:bg-AAK-lightblue transition-all shadow-[0_0_15px_rgba(0,102,255,0.4)] hover:shadow-[0_0_25px_rgba(0,102,255,0.6)]">
+                        Book Appointment
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-AAK-blue focus:outline-none transition-colors">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-AAK-dark border-t border-AAK-gray/30 shadow-2xl">
+            <div class="px-4 py-6 space-y-2 flex flex-col text-center">
+                <a href="index.html" class="block px-3 py-3 text-white font-semibold tracking-wider hover:text-AAK-blue">HOME</a>
+                <a href="services.html" class="block px-3 py-3 text-AAK-blue font-semibold tracking-wider">SERVICES</a>
+                <a href="about.html" class="block px-3 py-3 text-white font-semibold tracking-wider hover:text-AAK-blue">ABOUT</a>
+                <a href="contact.html" class="block px-3 py-3 text-white font-semibold tracking-wider hover:text-AAK-blue">CONTACT</a>
+                <a href="contact.html" class="inline-block mt-4 bg-AAK-blue text-white px-6 py-3 rounded text-sm uppercase tracking-widest font-bold mx-auto w-full max-w-xs">Book Appointment</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="relative pt-40 pb-24 lg:pt-48 lg:pb-32 bg-page-header bg-cover bg-center border-b border-AAK-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center reveal">
+            <div class="inline-flex items-center gap-3 mb-4 justify-center">
+                <div class="w-8 h-1 bg-AAK-blue"></div>
+                <p class="text-AAK-blue uppercase tracking-[0.3em] text-sm font-bold">What We Do</p>
+                <div class="w-8 h-1 bg-AAK-blue"></div>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-white uppercase tracking-tight mb-6">Our Services</h1>
+            <p class="text-AAK-muted text-lg max-w-2xl mx-auto font-light">
+                Comprehensive, meticulous, and industry-leading auto care. From deep interior restorations to cutting-edge ceramic protection.
+            </p>
+        </div>
+    </header>
+
+    <!-- Individual Services Grid -->
+    <section class="py-24 bg-AAK-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Service 1 -->
+                <div class="service-card bg-AAK-dark border border-AAK-gray rounded-lg overflow-hidden group reveal">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-AAK-black/40 group-hover:bg-transparent transition-all z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=800&auto=format&fit=crop" alt="Exterior Detailing" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="text-3xl text-white mb-4 service-icon transition-all duration-300"><i class="fa-solid fa-shower"></i></div>
+                        <h3 class="text-xl font-bold text-white uppercase tracking-wide mb-3">Exterior Detailing</h3>
+                        <p class="text-AAK-muted text-sm font-light leading-relaxed mb-6">A meticulous, multi-stage safe wash and decontamination process that safely removes embedded iron, tar, and road grime without inducing swirl marks.</p>
+                        <a href="contact.html" class="text-AAK-blue text-sm font-bold uppercase tracking-widest hover:text-white transition-colors flex items-center gap-2">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card bg-AAK-dark border border-AAK-gray rounded-lg overflow-hidden group reveal" style="transition-delay: 100ms;">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-AAK-black/40 group-hover:bg-transparent transition-all z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop" alt="Interior Deep Cleaning" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="text-3xl text-white mb-4 service-icon transition-all duration-300"><i class="fa-solid fa-car-side"></i></div>
+                        <h3 class="text-xl font-bold text-white uppercase tracking-wide mb-3">Interior Deep Cleaning</h3>
+                        <p class="text-AAK-muted text-sm font-light leading-relaxed mb-6">Comprehensive steam cleaning, leather conditioning, and stain extraction. We rejuvenate your cabin to a factory-fresh, sterile standard.</p>
+                        <a href="contact.html" class="text-AAK-blue text-sm font-bold uppercase tracking-widest hover:text-white transition-colors flex items-center gap-2">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card bg-AAK-dark border border-AAK-gray rounded-lg overflow-hidden group reveal" style="transition-delay: 200ms;">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-AAK-black/40 group-hover:bg-transparent transition-all z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1619551734325-81aaf323686c?q=80&w=800&auto=format&fit=crop" alt="Ceramic Coating" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="text-3xl text-white mb-4 service-icon transition-all duration-300"><i class="fa-solid fa-shield-virus"></i></div>
+                        <h3 class="text-xl font-bold text-white uppercase tracking-wide mb-3">Ceramic Coating</h3>
+                        <p class="text-AAK-muted text-sm font-light leading-relaxed mb-6">Application of professional-grade 9H ceramic coatings. Provides years of extreme gloss, hydrophobic properties, and protection against UV rays.</p>
+                        <a href="contact.html" class="text-AAK-blue text-sm font-bold uppercase tracking-widest hover:text-white transition-colors flex items-center gap-2">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card bg-AAK-dark border border-AAK-gray rounded-lg overflow-hidden group reveal">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-AAK-black/40 group-hover:bg-transparent transition-all z-10"></div>
+                        <img src="https://img.magnific.com/free-photo/man-working-car-detailing-coating-car_1303-30592.jpg?semt=ais_hybrid&w=740&q=80" alt="Paint Correction" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="text-3xl text-white mb-4 service-icon transition-all duration-300"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                        <h3 class="text-xl font-bold text-white uppercase tracking-wide mb-3">Paint Correction</h3>
+                        <p class="text-AAK-muted text-sm font-light leading-relaxed mb-6">Multi-stage machine polishing to permanently remove swirl marks, scratches, holograms, and oxidation, revealing a flawless mirror finish.</p>
+                        <a href="contact.html" class="text-AAK-blue text-sm font-bold uppercase tracking-widest hover:text-white transition-colors flex items-center gap-2">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card bg-AAK-dark border border-AAK-gray rounded-lg overflow-hidden group reveal" style="transition-delay: 100ms;">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-AAK-black/40 group-hover:bg-transparent transition-all z-10"></div>
+                        <img src="https://t4.ftcdn.net/jpg/03/23/61/55/360_F_323615500_ym3qdV2mJfAwwY9twwHJ7HNDKK9aSShH.jpg" alt="Paint Protection Film" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="text-3xl text-white mb-4 service-icon transition-all duration-300"><i class="fa-solid fa-layer-group"></i></div>
+                        <h3 class="text-xl font-bold text-white uppercase tracking-wide mb-3">Paint Protection Film</h3>
+                        <p class="text-AAK-muted text-sm font-light leading-relaxed mb-6">Self-healing, optically clear PPF installation. The ultimate defense against rock chips, road debris, and physical scratches for high-impact areas.</p>
+                        <a href="contact.html" class="text-AAK-blue text-sm font-bold uppercase tracking-widest hover:text-white transition-colors flex items-center gap-2">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-card bg-AAK-dark border border-AAK-gray rounded-lg overflow-hidden group reveal" style="transition-delay: 200ms;">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-AAK-black/40 group-hover:bg-transparent transition-all z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=800&auto=format&fit=crop" alt="Maintenance Packages" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="text-3xl text-white mb-4 service-icon transition-all duration-300"><i class="fa-solid fa-calendar-check"></i></div>
+                        <h3 class="text-xl font-bold text-white uppercase tracking-wide mb-3">Premium Maintenance</h3>
+                        <p class="text-AAK-muted text-sm font-light leading-relaxed mb-6">Exclusive ongoing maintenance programs for coated or PPF-wrapped vehicles to ensure long-lasting durability and continuous showroom shine.</p>
+                        <a href="contact.html" class="text-AAK-blue text-sm font-bold uppercase tracking-widest hover:text-white transition-colors flex items-center gap-2">Book Now <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Packages -->
+    <section class="py-24 bg-AAK-dark border-t border-AAK-gray relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-5xl font-black text-white uppercase tracking-tight mb-4">Detailing Packages</h2>
+                <p class="text-AAK-muted text-lg max-w-2xl mx-auto font-light">Curated service bundles designed to provide maximum value and comprehensive care for your vehicle.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                
+                <!-- Essential Package -->
+                <div class="bg-AAK-black border border-AAK-gray rounded-lg p-8 reveal">
+                    <h3 class="text-2xl font-bold text-white uppercase tracking-wider mb-2">Essential</h3>
+                    <p class="text-AAK-muted text-sm mb-6">Perfect for regular upkeep and a deep reset.</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-black text-white">$150</span>
+                        <span class="text-AAK-muted text-sm">/ starting at</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-AAK-blue mt-1 mr-3"></i> <span>Hand wash & safe dry</span>
+                        </li>
+                        <li class="flex items-start text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-AAK-blue mt-1 mr-3"></i> <span>Wheel & tire deep clean</span>
+                        </li>
+                        <li class="flex items-start text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-AAK-blue mt-1 mr-3"></i> <span>Interior vacuum & wipe down</span>
+                        </li>
+                        <li class="flex items-start text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-AAK-blue mt-1 mr-3"></i> <span>Window cleaning (in/out)</span>
+                        </li>
+                        <li class="flex items-start text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-AAK-blue mt-1 mr-3"></i> <span>Spray sealant application</span>
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="block w-full py-3 px-4 border border-AAK-gray text-white text-center rounded uppercase tracking-wider text-sm font-bold hover:border-AAK-blue hover:text-AAK-blue transition-colors">Select Essential</a>
+                </div>
+
+                <!-- Premium Package (Highlighted) -->
+                <div class="bg-AAK-black border-2 border-AAK-blue rounded-lg p-8 relative transform lg:-translate-y-4 shadow-[0_0_30px_rgba(0,102,255,0.15)] reveal" style="transition-delay: 100ms;">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-AAK-blue text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+                        Most Popular
+                    </div>
+                    <h3 class="text-2xl font-bold text-white uppercase tracking-wider mb-2">Premium</h3>
+                    <p class="text-AAK-muted text-sm mb-6">Comprehensive inside and out enhancement.</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-black text-white">$350</span>
+                        <span class="text-AAK-muted text-sm">/ starting at</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-AAK-blue mt-1 mr-3"></i> <span>Everything in Essential</span>
+                        </li>
+                        <li class="flex items-start text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-AAK-blue mt-1 mr-3"></i> <span>Chemical decontamination (Iron X)</span>
+                        </li>
+                        <li class="flex items-start text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-AAK-blue mt-1 mr-3"></i> <span>Clay bar treatment</span>
+                        </li>
+                        <li class="flex items-start text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-AAK-blue mt-1 mr-3"></i> <span>Leather deep clean & condition</span>
+                        </li>
+                        <li class="flex items-start text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-AAK-blue mt-1 mr-3"></i> <span>6-Month ceramic sealant</span>
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="block w-full py-3 px-4 bg-AAK-blue text-white text-center rounded uppercase tracking-wider text-sm font-bold hover:bg-AAK-lightblue transition-colors">Select Premium</a>
+                </div>
+
+                <!-- Ultimate Package -->
+                <div class="bg-AAK-black border border-AAK-gray rounded-lg p-8 reveal" style="transition-delay: 200ms;">
+                    <h3 class="text-2xl font-bold text-white uppercase tracking-wider mb-2">Ultimate</h3>
+                    <p class="text-AAK-muted text-sm mb-6">The definitive showroom restoration.</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-black text-white">$850</span>
+                        <span class="text-AAK-muted text-sm">/ starting at</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-AAK-blue mt-1 mr-3"></i> <span>Everything in Premium</span>
+                        </li>
+                        <li class="flex items-start text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-AAK-blue mt-1 mr-3"></i> <span>Single-stage paint correction</span>
+                        </li>
+                        <li class="flex items-start text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-AAK-blue mt-1 mr-3"></i> <span>Engine bay detailing</span>
+                        </li>
+                        <li class="flex items-start text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-AAK-blue mt-1 mr-3"></i> <span>Carpet & upholstery extraction</span>
+                        </li>
+                        <li class="flex items-start text-sm text-gray-300">
+                            <i class="fa-solid fa-check text-AAK-blue mt-1 mr-3"></i> <span>Professional 3-Year Ceramic Coating</span>
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="block w-full py-3 px-4 border border-AAK-gray text-white text-center rounded uppercase tracking-wider text-sm font-bold hover:border-AAK-blue hover:text-AAK-blue transition-colors">Select Ultimate</a>
+                </div>
+
+            </div>
+            
+            <p class="text-center text-AAK-muted text-xs mt-10 font-light">* Prices are estimates based on standard sized coupes. Large SUVs and heavily soiled vehicles will incur additional charges. Final quote provided upon visual inspection.</p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-AAK-blue">
+        <div class="max-w-4xl mx-auto px-4 text-center reveal">
+            <h2 class="text-3xl md:text-4xl font-black text-white uppercase tracking-tight mb-6">Ready to Transform Your Vehicle?</h2>
+            <p class="text-blue-100 text-lg mb-8 font-light">Book your slot today. Our calendar fills up quickly due to the extensive time dedicated to each vehicle.</p>
+            <a href="contact.html" class="inline-block bg-AAK-black text-white px-8 py-4 rounded uppercase tracking-wider text-sm font-bold hover:bg-AAK-dark transition-all border border-AAK-black shadow-lg">
+                Schedule a Consultation
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#050505] border-t border-AAK-gray py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Brand -->
+                <div>
+                    <a href="index.html" class="font-bold text-2xl tracking-tighter text-white flex items-center gap-2 mb-6">
+                        <i class="fa-solid fa-shield-halved text-AAK-blue"></i>
+                        AAK
+                    </a>
+                    <p class="text-AAK-muted text-sm leading-relaxed mb-6">
+                        The pinnacle of luxury automotive detailing. Preserving perfection through master craftsmanship and advanced protection technology.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-AAK-dark border border-AAK-gray rounded flex items-center justify-center text-white hover:border-AAK-blue hover:text-AAK-blue transition-all"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 bg-AAK-dark border border-AAK-gray rounded flex items-center justify-center text-white hover:border-AAK-blue hover:text-AAK-blue transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-AAK-dark border border-AAK-gray rounded flex items-center justify-center text-white hover:border-AAK-blue hover:text-AAK-blue transition-all"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-AAK-muted text-sm hover:text-AAK-blue transition-colors">Home</a></li>
+                        <li><a href="services.html" class="text-AAK-blue text-sm transition-colors">Services & Packages</a></li>
+                        <li><a href="about.html" class="text-AAK-muted text-sm hover:text-AAK-blue transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="text-AAK-muted text-sm hover:text-AAK-blue transition-colors">Book an Appointment</a></li>
+                    </ul>
+                </div>
+
+                <!-- Hours -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6">Studio Hours</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex justify-between text-AAK-muted">
+                            <span>Monday - Friday:</span>
+                            <span class="text-white">8:30 AM - 6:00 PM</span>
+                        </li>
+                        <li class="flex justify-between text-AAK-muted">
+                            <span>Saturday:</span>
+                            <span class="text-white">9:00 AM - 2:00 PM</span>
+                        </li>
+                        <li class="flex justify-between text-AAK-muted">
+                            <span>Sunday:</span>
+                            <span class="text-white">Closed</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6">Stay Updated</h4>
+                    <p class="text-AAK-muted text-sm mb-4">Join our mailing list for studio updates and exclusive maintenance tips.</p>
+                    <form onsubmit="event.preventDefault(); this.innerHTML='<p class=\'text-AAK-blue text-sm font-bold uppercase tracking-wider\'>Subscribed successfully.</p>';">
+                        <div class="flex">
+                            <input type="email" placeholder="Email address" required class="bg-AAK-dark border border-AAK-gray border-r-0 text-white text-sm px-4 py-2 w-full focus:outline-none focus:border-AAK-blue rounded-l">
+                            <button type="submit" class="bg-AAK-gray border border-AAK-gray border-l-0 text-white px-4 py-2 text-sm hover:bg-AAK-blue hover:border-AAK-blue transition-colors rounded-r">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-AAK-gray pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-AAK-muted">
+                <p>&copy; 2026 AAK Auto Detailing. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navbar Scroll Effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('nav-scrolled');
+                    navbar.classList.remove('py-6');
+                    navbar.classList.add('py-4');
+                } else {
+                    navbar.classList.remove('nav-scrolled');
+                    navbar.classList.remove('py-4');
+                    navbar.classList.add('py-6');
+                }
+            });
+
+            // Mobile Menu Toggle
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = mobileBtn.querySelector('i');
+
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                if(mobileMenu.classList.contains('hidden')) {
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                } else {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-xmark');
+                }
+            });
+
+            // Intersection Observer for Reveal Animations
+            const revealOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                });
+            }, revealOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                revealObserver.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
+

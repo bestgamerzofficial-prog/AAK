@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | AAK Auto Detailing</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        AAK: {
+                            black: '#0a0a0a',
+                            dark: '#121212',
+                            gray: '#1e1e1e',
+                            lightgray: '#2a2a2a',
+                            blue: '#0066ff',
+                            lightblue: '#3385ff',
+                            text: '#f3f4f6',
+                            muted: '#9ca3af',
+                            success: '#10b981'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'page-header': "linear-gradient(to right, rgba(10, 10, 10, 0.95), rgba(10, 10, 10, 0.7)), url('https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?q=80&w=1920&auto=format&fit=crop')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #1e1e1e; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0066ff; }
+
+        .nav-scrolled {
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Form Inputs */
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #0066ff;
+            box-shadow: 0 0 10px rgba(0, 102, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-AAK-blue selection:text-white">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 top-0 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="font-bold text-2xl tracking-tighter text-white flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-AAK-blue"></i>
+                        AAK<span class="text-AAK-muted font-light text-sm tracking-widest ml-1 mt-1 hidden sm:inline-block">DETAILING</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-sm font-semibold uppercase tracking-widest text-AAK-text hover:text-AAK-blue transition-colors">Home</a>
+                    <a href="services.html" class="text-sm font-semibold uppercase tracking-widest text-AAK-text hover:text-AAK-blue transition-colors">Services</a>
+                    <a href="about.html" class="text-sm font-semibold uppercase tracking-widest text-AAK-text hover:text-AAK-blue transition-colors">About</a>
+                    <a href="contact.html" class="text-sm font-semibold uppercase tracking-widest text-AAK-blue transition-colors">Contact</a>
+                    <a href="appointment.html" class="bg-AAK-blue text-white px-6 py-2.5 rounded text-sm uppercase tracking-widest font-bold hover:bg-AAK-lightblue transition-all shadow-[0_0_15px_rgba(0,102,255,0.4)] hover:shadow-[0_0_25px_rgba(0,102,255,0.6)]">
+                        Book Appointment
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-AAK-blue focus:outline-none transition-colors">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-AAK-dark border-t border-AAK-gray/30 shadow-2xl">
+            <div class="px-4 py-6 space-y-2 flex flex-col text-center">
+                <a href="index.html" class="block px-3 py-3 text-white font-semibold tracking-wider hover:text-AAK-blue">HOME</a>
+                <a href="services.html" class="block px-3 py-3 text-white font-semibold tracking-wider hover:text-AAK-blue">SERVICES</a>
+                <a href="about.html" class="block px-3 py-3 text-white font-semibold tracking-wider hover:text-AAK-blue">ABOUT</a>
+                <a href="contact.html" class="block px-3 py-3 text-AAK-blue font-semibold tracking-wider">CONTACT</a>
+                <a href="contact.html" class="inline-block mt-4 bg-AAK-blue text-white px-6 py-3 rounded text-sm uppercase tracking-widest font-bold mx-auto w-full max-w-xs">Book Appointment</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="relative pt-40 pb-24 lg:pt-48 lg:pb-32 bg-page-header bg-cover bg-center border-b border-AAK-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center reveal">
+            <div class="inline-flex items-center gap-3 mb-4 justify-center">
+                <div class="w-8 h-1 bg-AAK-blue"></div>
+                <p class="text-AAK-blue uppercase tracking-[0.3em] text-sm font-bold">Get In Touch</p>
+                <div class="w-8 h-1 bg-AAK-blue"></div>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-white uppercase tracking-tight mb-6">Contact Studio</h1>
+            <p class="text-AAK-muted text-lg max-w-2xl mx-auto font-light">
+                Ready to elevate your vehicle? Reach out to schedule a consultation or book your detailing package.
+            </p>
+        </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="py-24 bg-AAK-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                
+                <!-- Contact Info -->
+                <div class="reveal">
+                    <h2 class="text-3xl font-black text-white uppercase tracking-tight mb-8">Studio Details</h2>
+                    <p class="text-AAK-muted font-light mb-10 leading-relaxed">
+                        Due to the extensive nature of our work, studio visits are by appointment only. This ensures every vehicle receives our undivided attention in a controlled environment.
+                    </p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-AAK-dark border border-AAK-gray rounded flex items-center justify-center text-AAK-blue text-xl flex-shrink-0 mt-1">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div class="ml-6">
+                                <h4 class="text-white font-bold uppercase tracking-wider text-sm mb-2">Location</h4>
+                                <p class="text-AAK-muted font-light text-sm">100 Luxury Drive, Motor District<br>Los Angeles, CA 90015</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-AAK-dark border border-AAK-gray rounded flex items-center justify-center text-AAK-blue text-xl flex-shrink-0 mt-1">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div class="ml-6">
+                                <h4 class="text-white font-bold uppercase tracking-wider text-sm mb-2">Call Us</h4>
+                                <p class="text-AAK-muted font-light text-sm">+1 (555) 019-AAK</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-AAK-dark border border-AAK-gray rounded flex items-center justify-center text-AAK-blue text-xl flex-shrink-0 mt-1">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="ml-6">
+                                <h4 class="text-white font-bold uppercase tracking-wider text-sm mb-2">Email</h4>
+                                <p class="text-AAK-muted font-light text-sm">booking@AAKdetailing.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp Button -->
+                    <div class="mt-12 p-6 bg-[#075E54]/10 border border-[#25D366]/30 rounded-lg flex items-center justify-between">
+                        <div>
+                            <h4 class="text-white font-bold text-sm mb-1">Instant Enquiry?</h4>
+                            <p class="text-AAK-muted text-xs font-light">Message us directly on WhatsApp for quick quotes.</p>
+                        </div>
+                        <a href="#" class="bg-[#25D366] text-white px-5 py-3 rounded-full font-bold text-sm flex items-center gap-2 hover:bg-[#1EBE5D] transition-colors shadow-lg shadow-[#25D366]/20">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> Chat Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Booking Form -->
+                <div class="bg-AAK-dark p-8 md:p-10 rounded-lg border border-AAK-gray reveal" style="transition-delay: 100ms;">
+                    <h3 class="text-2xl font-black text-white uppercase tracking-tight mb-6">Request A Quote</h3>
+                    
+                    <form id="booking-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold text-AAK-muted uppercase tracking-wider mb-2">Full Name *</label>
+                                <input type="text" id="name" required class="w-full bg-AAK-black border border-AAK-gray text-white px-4 py-3 rounded text-sm transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-AAK-muted uppercase tracking-wider mb-2">Phone Number *</label>
+                                <input type="tel" id="phone" required class="w-full bg-AAK-black border border-AAK-gray text-white px-4 py-3 rounded text-sm transition-colors">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold text-AAK-muted uppercase tracking-wider mb-2">Email Address *</label>
+                                <input type="email" id="email" required class="w-full bg-AAK-black border border-AAK-gray text-white px-4 py-3 rounded text-sm transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-AAK-muted uppercase tracking-wider mb-2">Vehicle Make & Model *</label>
+                                <input type="text" id="vehicle" placeholder="e.g. Porsche 911 GT3" required class="w-full bg-AAK-black border border-AAK-gray text-white px-4 py-3 rounded text-sm transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-AAK-muted uppercase tracking-wider mb-2">Primary Service Interest</label>
+                            <select id="service" class="w-full bg-AAK-black border border-AAK-gray text-white px-4 py-3 rounded text-sm transition-colors appearance-none cursor-pointer">
+                                <option value="essential">Essential Package</option>
+                                <option value="premium">Premium Package (Most Popular)</option>
+                                <option value="ultimate">Ultimate Package</option>
+                                <option value="ceramic">Ceramic Coating Only</option>
+                                <option value="ppf">Paint Protection Film (PPF)</option>
+                                <option value="custom">Custom Request / Unsure</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-AAK-muted uppercase tracking-wider mb-2">Additional Details</label>
+                            <textarea id="message" rows="4" placeholder="Tell us about the current condition of the vehicle..." class="w-full bg-AAK-black border border-AAK-gray text-white px-4 py-3 rounded text-sm transition-colors resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-AAK-blue text-white py-4 rounded font-bold uppercase tracking-widest text-sm hover:bg-AAK-lightblue transition-all shadow-[0_0_15px_rgba(0,102,255,0.3)]">
+                            Submit Request
+                        </button>
+                    </form>
+
+                    <!-- Success Message (Hidden by default) -->
+                    <div id="form-success" class="hidden mt-6 p-4 bg-AAK-success/10 border border-AAK-success text-AAK-success rounded flex items-center gap-3">
+                        <i class="fa-solid fa-circle-check text-xl"></i>
+                        <p class="text-sm font-medium">Request received! A Master Detailer will contact you within 24 hours.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#050505] border-t border-AAK-gray py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Brand -->
+                <div>
+                    <a href="index.html" class="font-bold text-2xl tracking-tighter text-white flex items-center gap-2 mb-6">
+                        <i class="fa-solid fa-shield-halved text-AAK-blue"></i>
+                        AAK
+                    </a>
+                    <p class="text-AAK-muted text-sm leading-relaxed mb-6">
+                        The pinnacle of luxury automotive detailing. Preserving perfection through master craftsmanship and advanced protection technology.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-AAK-dark border border-AAK-gray rounded flex items-center justify-center text-white hover:border-AAK-blue hover:text-AAK-blue transition-all"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 bg-AAK-dark border border-AAK-gray rounded flex items-center justify-center text-white hover:border-AAK-blue hover:text-AAK-blue transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-AAK-dark border border-AAK-gray rounded flex items-center justify-center text-white hover:border-AAK-blue hover:text-AAK-blue transition-all"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-AAK-muted text-sm hover:text-AAK-blue transition-colors">Home</a></li>
+                        <li><a href="services.html" class="text-AAK-muted text-sm hover:text-AAK-blue transition-colors">Services & Packages</a></li>
+                        <li><a href="about.html" class="text-AAK-muted text-sm hover:text-AAK-blue transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="text-AAK-blue text-sm transition-colors">Book an Appointment</a></li>
+                    </ul>
+                </div>
+
+                <!-- Hours -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6">Studio Hours</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex justify-between text-AAK-muted">
+                            <span>Monday - Friday:</span>
+                            <span class="text-white">8:30 AM - 6:00 PM</span>
+                        </li>
+                        <li class="flex justify-between text-AAK-muted">
+                            <span>Saturday:</span>
+                            <span class="text-white">9:00 AM - 2:00 PM</span>
+                        </li>
+                        <li class="flex justify-between text-AAK-muted">
+                            <span>Sunday:</span>
+                            <span class="text-white">Closed</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6">Stay Updated</h4>
+                    <p class="text-AAK-muted text-sm mb-4">Join our mailing list for studio updates and exclusive maintenance tips.</p>
+                    <form onsubmit="event.preventDefault(); this.innerHTML='<p class=\'text-AAK-blue text-sm font-bold uppercase tracking-wider\'>Subscribed successfully.</p>';">
+                        <div class="flex">
+                            <input type="email" placeholder="Email address" required class="bg-AAK-dark border border-AAK-gray border-r-0 text-white text-sm px-4 py-2 w-full focus:outline-none focus:border-AAK-blue rounded-l">
+                            <button type="submit" class="bg-AAK-gray border border-AAK-gray border-l-0 text-white px-4 py-2 text-sm hover:bg-AAK-blue hover:border-AAK-blue transition-colors rounded-r">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-AAK-gray pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-AAK-muted">
+                <p>&copy; 2026 AAK Auto Detailing. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navbar Scroll Effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('nav-scrolled');
+                    navbar.classList.remove('py-6');
+                    navbar.classList.add('py-4');
+                } else {
+                    navbar.classList.remove('nav-scrolled');
+                    navbar.classList.remove('py-4');
+                    navbar.classList.add('py-6');
+                }
+            });
+
+            // Mobile Menu Toggle
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = mobileBtn.querySelector('i');
+
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                if(mobileMenu.classList.contains('hidden')) {
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                } else {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-xmark');
+                }
+            });
+
+            // Intersection Observer for Reveal Animations
+            const revealOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                });
+            }, revealOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            // Form Handling
+            const bookingForm = document.getElementById('booking-form');
+            const successMsg = document.getElementById('form-success');
+
+            if(bookingForm) {
+                bookingForm.addEventListener('submit', (e) => {
+                    e.preventDefault(); // Prevent page reload
+                    
+                    // Hide form and show success message
+                    bookingForm.style.display = 'none';
+                    successMsg.classList.remove('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

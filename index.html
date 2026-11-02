@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAK Auto Detailing | Premium Vehicle Care</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        AAK: {
+                            black: '#0a0a0a',
+                            dark: '#121212',
+                            gray: '#1e1e1e',
+                            lightgray: '#2a2a2a',
+                            blue: '#0066ff',
+                            lightblue: '#3385ff',
+                            text: '#f3f4f6',
+                            muted: '#9ca3af'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to right, rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.4)), url('https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=1920&auto=format&fit=crop')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #1e1e1e; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0066ff; }
+
+        /* Navbar transitions */
+        .nav-scrolled {
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-AAK-blue selection:text-white">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 top-0 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="font-bold text-2xl tracking-tighter text-white flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-AAK-blue"></i>
+                        AAK<span class="text-AAK-muted font-light text-sm tracking-widest ml-1 mt-1 hidden sm:inline-block">DETAILING</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-sm font-semibold uppercase tracking-widest text-AAK-blue transition-colors">Home</a>
+                    <a href="services.html" class="text-sm font-semibold uppercase tracking-widest text-AAK-text hover:text-AAK-blue transition-colors">Services</a>
+                    <a href="about.html" class="text-sm font-semibold uppercase tracking-widest text-AAK-text hover:text-AAK-blue transition-colors">About</a>
+                    <a href="contact.html" class="text-sm font-semibold uppercase tracking-widest text-AAK-text hover:text-AAK-blue transition-colors">Contact</a>
+                    <a href="appointment.html" class="bg-AAK-blue text-white px-6 py-2.5 rounded text-sm uppercase tracking-widest font-bold hover:bg-AAK-lightblue transition-all shadow-[0_0_15px_rgba(0,102,255,0.4)] hover:shadow-[0_0_25px_rgba(0,102,255,0.6)]">
+                        Book Appointment
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-AAK-blue focus:outline-none transition-colors">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-AAK-dark border-t border-AAK-gray/30 shadow-2xl">
+            <div class="px-4 py-6 space-y-2 flex flex-col text-center">
+                <a href="index.html" class="block px-3 py-3 text-AAK-blue font-semibold tracking-wider">HOME</a>
+                <a href="services.html" class="block px-3 py-3 text-white font-semibold tracking-wider hover:text-AAK-blue">SERVICES</a>
+                <a href="about.html" class="block px-3 py-3 text-white font-semibold tracking-wider hover:text-AAK-blue">ABOUT</a>
+                <a href="contact.html" class="block px-3 py-3 text-white font-semibold tracking-wider hover:text-AAK-blue">CONTACT</a>
+                <a href="contact.html" class="inline-block mt-4 bg-AAK-blue text-white px-6 py-3 rounded text-sm uppercase tracking-widest font-bold mx-auto w-full max-w-xs">Book Appointment</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen bg-hero-pattern bg-cover bg-center bg-no-repeat flex items-center">
+        <div class="absolute inset-0 bg-gradient-to-r from-AAK-black via-AAK-black/80 to-transparent"></div>
+        
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+            <div class="max-w-3xl reveal">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-1 bg-AAK-blue"></div>
+                    <p class="text-AAK-blue uppercase tracking-[0.3em] text-sm font-bold">Luxury Studio</p>
+                </div>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 leading-[1.1] tracking-tight">
+                    PERFECTION IS<br>IN THE <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-AAK-muted">DETAILS.</span>
+                </h1>
+                <p class="text-AAK-muted text-lg md:text-xl mb-10 max-w-xl font-light leading-relaxed">
+                    Premium automotive detailing. Exceptional protection. Uncompromising standards for those who demand the absolute best for their vehicles.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <a href="services.html" class="w-full sm:w-auto px-8 py-4 bg-AAK-blue text-white rounded uppercase tracking-wider text-sm font-bold hover:bg-AAK-lightblue transition-all text-center">
+                        Explore Services
+                    </a>
+                    <a href="contact.html" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-white text-white rounded uppercase tracking-wider text-sm font-bold hover:bg-white hover:text-AAK-black transition-all text-center">
+                        Get a Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce opacity-50">
+            <span class="text-xs uppercase tracking-widest mb-2 text-white font-light">Scroll</span>
+            <i class="fa-solid fa-arrow-down text-white"></i>
+        </div>
+    </section>
+
+    <!-- Brief About Section (Teaser for About Page) -->
+    <section class="py-24 bg-AAK-dark border-b border-AAK-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <h4 class="text-AAK-blue uppercase tracking-[0.2em] text-sm font-bold mb-4">The AAK Standard</h4>
+                    <h2 class="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tight">Obsessed With Craftsmanship.</h2>
+                    <p class="text-AAK-muted leading-relaxed mb-6 font-light">
+                        At AAK Auto Detailing, we don't just clean cars; we restore, enhance, and protect them. Founded on an uncompromising passion for automotive excellence, our luxury studio specializes in bringing out the true potential of your vehicle's appearance.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-gray-300 font-medium">
+                            <i class="fa-solid fa-check text-AAK-blue mr-3"></i> Certified Master Detailers
+                        </li>
+                        <li class="flex items-center text-gray-300 font-medium">
+                            <i class="fa-solid fa-check text-AAK-blue mr-3"></i> Climate-Controlled Studio
+                        </li>
+                        <li class="flex items-center text-gray-300 font-medium">
+                            <i class="fa-solid fa-check text-AAK-blue mr-3"></i> Exclusive Use of Premium Products
+                        </li>
+                    </ul>
+                    <a href="about.html" class="inline-flex items-center text-white font-bold hover:text-AAK-blue transition-colors uppercase tracking-widest text-sm border-b-2 border-AAK-blue pb-1">
+                        Read Our Full Story <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <div class="relative reveal">
+                    <div class="absolute -inset-4 border border-AAK-gray bg-AAK-black z-0 rounded-lg transform translate-x-4 translate-y-4"></div>
+                    <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=1000&auto=format&fit=crop" alt="Premium Auto Detailing Workshop" class="relative z-10 w-full h-auto rounded-lg shadow-2xl object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Benefits / Why Choose -->
+    <section class="py-20 bg-AAK-blue">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 text-center">
+                <div class="reveal">
+                    <div class="text-white text-3xl mb-4"><i class="fa-solid fa-flask"></i></div>
+                    <h3 class="font-bold text-white uppercase tracking-wide mb-2 text-lg">Pro Products</h3>
+                    <p class="text-blue-100 text-sm font-light">Exclusive access to industry-leading compounds, polishes, and coatings.</p>
+                </div>
+                <div class="reveal" style="transition-delay: 100ms;">
+                    <div class="text-white text-3xl mb-4"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <h3 class="font-bold text-white uppercase tracking-wide mb-2 text-lg">Absolute Detail</h3>
+                    <p class="text-blue-100 text-sm font-light">We clean the areas others ignore. Q-tips and detailing brushes are our tools.</p>
+                </div>
+                <div class="reveal" style="transition-delay: 200ms;">
+                    <div class="text-white text-3xl mb-4"><i class="fa-solid fa-user-gear"></i></div>
+                    <h3 class="font-bold text-white uppercase tracking-wide mb-2 text-lg">Expert Techs</h3>
+                    <p class="text-blue-100 text-sm font-light">Extensively trained and certified specialists handling your prized investment.</p>
+                </div>
+                <div class="reveal" style="transition-delay: 300ms;">
+                    <div class="text-white text-3xl mb-4"><i class="fa-solid fa-star"></i></div>
+                    <h3 class="font-bold text-white uppercase tracking-wide mb-2 text-lg">Premium VIP</h3>
+                    <p class="text-blue-100 text-sm font-light">A seamless, luxurious customer experience from booking to delivery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials (Teaser) -->
+    <section class="py-24 bg-AAK-black border-t border-AAK-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <h2 class="text-3xl md:text-4xl font-black text-white text-center uppercase tracking-tight mb-16">Client Experiences</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-AAK-dark p-8 rounded-lg border border-AAK-gray relative">
+                    <i class="fa-solid fa-quote-right absolute top-6 right-6 text-4xl text-AAK-gray opacity-50"></i>
+                    <div class="flex text-AAK-blue text-sm mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 font-light mb-6 text-sm leading-relaxed">"The level of detail is simply unmatched. My 911 looks better than the day it rolled off the showroom floor in Stuttgart. The ceramic coating makes washing a breeze. AAK is the only place I trust."</p>
+                    <div>
+                        <p class="text-white font-bold uppercase tracking-wider text-sm">James Harrington</p>
+                        <p class="text-AAK-muted text-xs">Porsche 911 Owner</p>
+                    </div>
+                </div>
+                <div class="bg-AAK-dark p-8 rounded-lg border border-AAK-gray relative">
+                    <i class="fa-solid fa-quote-right absolute top-6 right-6 text-4xl text-AAK-gray opacity-50"></i>
+                    <div class="flex text-AAK-blue text-sm mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 font-light mb-6 text-sm leading-relaxed">"I had full PPF installed on my new AMG GT. The installation is virtually invisible, edges are perfectly wrapped. The team's communication throughout the week was exceptional."</p>
+                    <div>
+                        <p class="text-white font-bold uppercase tracking-wider text-sm">Marcus Sterling</p>
+                        <p class="text-AAK-muted text-xs">Mercedes-AMG GT Owner</p>
+                    </div>
+                </div>
+                <div class="bg-AAK-dark p-8 rounded-lg border border-AAK-gray relative">
+                    <i class="fa-solid fa-quote-right absolute top-6 right-6 text-4xl text-AAK-gray opacity-50"></i>
+                    <div class="flex text-AAK-blue text-sm mb-4">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 font-light mb-6 text-sm leading-relaxed">"Transformed my daily driven Range Rover. The interior deep clean removed stains I thought were permanent. Absolute professionals who take immense pride in their craft."</p>
+                    <div>
+                        <p class="text-white font-bold uppercase tracking-wider text-sm">Elena Rostova</p>
+                        <p class="text-AAK-muted text-xs">Range Rover Owner</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="services.html" class="inline-block border border-AAK-blue text-AAK-blue px-8 py-3 rounded uppercase tracking-wider text-sm font-bold hover:bg-AAK-blue hover:text-white transition-colors">Explore Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#050505] border-t border-AAK-gray py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Brand -->
+                <div>
+                    <a href="index.html" class="font-bold text-2xl tracking-tighter text-white flex items-center gap-2 mb-6">
+                        <i class="fa-solid fa-shield-halved text-AAK-blue"></i>
+                        AAK
+                    </a>
+                    <p class="text-AAK-muted text-sm leading-relaxed mb-6">
+                        The pinnacle of luxury automotive detailing. Preserving perfection through master craftsmanship and advanced protection technology.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-AAK-dark border border-AAK-gray rounded flex items-center justify-center text-white hover:border-AAK-blue hover:text-AAK-blue transition-all"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 bg-AAK-dark border border-AAK-gray rounded flex items-center justify-center text-white hover:border-AAK-blue hover:text-AAK-blue transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 bg-AAK-dark border border-AAK-gray rounded flex items-center justify-center text-white hover:border-AAK-blue hover:text-AAK-blue transition-all"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-AAK-muted text-sm hover:text-AAK-blue transition-colors">Home</a></li>
+                        <li><a href="services.html" class="text-AAK-muted text-sm hover:text-AAK-blue transition-colors">Services & Packages</a></li>
+                        <li><a href="about.html" class="text-AAK-muted text-sm hover:text-AAK-blue transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="text-AAK-muted text-sm hover:text-AAK-blue transition-colors">Book an Appointment</a></li>
+                    </ul>
+                </div>
+
+                <!-- Hours -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6">Studio Hours</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex justify-between text-AAK-muted">
+                            <span>Monday - Friday:</span>
+                            <span class="text-white">8:30 AM - 6:00 PM</span>
+                        </li>
+                        <li class="flex justify-between text-AAK-muted">
+                            <span>Saturday:</span>
+                            <span class="text-white">9:00 AM - 2:00 PM</span>
+                        </li>
+                        <li class="flex justify-between text-AAK-muted">
+                            <span>Sunday:</span>
+                            <span class="text-white">Closed</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6">Stay Updated</h4>
+                    <p class="text-AAK-muted text-sm mb-4">Join our mailing list for studio updates and exclusive maintenance tips.</p>
+                    <form onsubmit="event.preventDefault(); this.innerHTML='<p class=\'text-AAK-blue text-sm font-bold uppercase tracking-wider\'>Subscribed successfully.</p>';">
+                        <div class="flex">
+                            <input type="email" placeholder="Email address" required class="bg-AAK-dark border border-AAK-gray border-r-0 text-white text-sm px-4 py-2 w-full focus:outline-none focus:border-AAK-blue rounded-l">
+                            <button type="submit" class="bg-AAK-gray border border-AAK-gray border-l-0 text-white px-4 py-2 text-sm hover:bg-AAK-blue hover:border-AAK-blue transition-colors rounded-r">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-AAK-gray pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-AAK-muted">
+                <p>&copy; 2026 AAK Auto Detailing. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navbar Scroll Effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('nav-scrolled');
+                    navbar.classList.remove('py-6');
+                    navbar.classList.add('py-4');
+                } else {
+                    navbar.classList.remove('nav-scrolled');
+                    navbar.classList.remove('py-4');
+                    navbar.classList.add('py-6');
+                }
+            });
+
+            // Mobile Menu Toggle
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIcon = mobileBtn.querySelector('i');
+
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                if(mobileMenu.classList.contains('hidden')) {
+                    menuIcon.classList.remove('fa-xmark');
+                    menuIcon.classList.add('fa-bars');
+                } else {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-xmark');
+                }
+            });
+
+            // Intersection Observer for Reveal Animations
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealObserver = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                });
+            }, revealOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                revealObserver.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
+
